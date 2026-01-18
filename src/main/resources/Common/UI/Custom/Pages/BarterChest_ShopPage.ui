@@ -1,0 +1,152 @@
+$C = "../Common.ui";
+
+@CustomLabelStyle = LabelStyle(
+  FontSize: 14,
+  TextColor: #bfcdd5,
+  RenderBold: true,
+  HorizontalAlignment: Center,
+  VerticalAlignment: Center
+);
+
+@CustomButtonStyle = TextButtonStyle(
+  Default: (Background: $C.@DefaultSquareButtonDefaultBackground, LabelStyle: @CustomLabelStyle),
+  Hovered: (Background: $C.@DefaultSquareButtonHoveredBackground, LabelStyle: @CustomLabelStyle),
+  Pressed: (Background: $C.@DefaultSquareButtonPressedBackground, LabelStyle: @CustomLabelStyle),
+  Disabled: (Background: $C.@DefaultSquareButtonDisabledBackground, LabelStyle: @CustomLabelStyle),
+  Sounds: $C.@ButtonSounds,
+);
+
+@BuyButtonStyle = TextButtonStyle(
+  Default: (Background: (Color: #228822), LabelStyle: @CustomLabelStyle),
+  Hovered: (Background: (Color: #33aa33), LabelStyle: @CustomLabelStyle),
+  Pressed: (Background: (Color: #116611), LabelStyle: @CustomLabelStyle),
+  Disabled: (Background: (Color: #444444), LabelStyle: @CustomLabelStyle),
+  Sounds: $C.@ButtonSounds,
+);
+
+@SellButtonStyle = TextButtonStyle(
+  Default: (Background: (Color: #884422), LabelStyle: @CustomLabelStyle),
+  Hovered: (Background: (Color: #aa6633), LabelStyle: @CustomLabelStyle),
+  Pressed: (Background: (Color: #663311), LabelStyle: @CustomLabelStyle),
+  Disabled: (Background: (Color: #444444), LabelStyle: @CustomLabelStyle),
+  Sounds: $C.@ButtonSounds,
+);
+
+$C.@PageOverlay {
+
+  $C.@DecoratedContainer {
+    Anchor: (Width: 400, Height: 350);
+
+    #Title {
+      Group {
+        $C.@Title #TitleText {
+          @Text = "Barter Shop";
+        }
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Left: 20, Right: 20, Top: 10, Bottom: 10);
+
+      // Item Info Section
+      Group #ItemSection {
+        LayoutMode: Top;
+        Anchor: (Bottom: 10);
+
+        Label #ItemName {
+          Text: "Not Configured";
+          Style: (
+            FontSize: 18,
+            TextColor: #ffdd44,
+            RenderBold: true,
+            HorizontalAlignment: Center
+          );
+          Anchor: (Bottom: 5);
+        }
+
+        Label #StockLabel {
+          Text: "Stock: 0";
+          Style: (
+            FontSize: 14,
+            TextColor: #aaaaaa,
+            HorizontalAlignment: Center
+          );
+          Anchor: (Bottom: 10);
+        }
+      }
+
+      // Price Section
+      Group #PriceSection {
+        LayoutMode: Top;
+        Anchor: (Bottom: 15);
+
+        Label #BuyPriceLabel {
+          Text: "Buy: Not for sale";
+          Style: (
+            FontSize: 14,
+            TextColor: #44ff44,
+            HorizontalAlignment: Center
+          );
+          Anchor: (Bottom: 5);
+        }
+
+        Label #SellPriceLabel {
+          Text: "Sell: Not buying";
+          Style: (
+            FontSize: 14,
+            TextColor: #ff8844,
+            HorizontalAlignment: Center
+          );
+          Anchor: (Bottom: 10);
+        }
+      }
+
+      // Button Section
+      Group #ButtonSection {
+        LayoutMode: Left;
+        Anchor: (Bottom: 10, Height: 45);
+
+        TextButton #BuyButton {
+          Text: "Buy 1";
+          Style: @BuyButtonStyle;
+          Anchor: (Width: 150, Height: 40);
+          Padding: (Left: 10, Right: 10);
+        }
+
+        Label { FlexWeight: 1; }
+
+        TextButton #SellButton {
+          Text: "Sell 1";
+          Style: @SellButtonStyle;
+          Anchor: (Width: 150, Height: 40);
+          Padding: (Left: 10, Right: 10);
+        }
+      }
+
+      // Hint
+      Label #HintLabel {
+        Text: "Hold SHIFT for 10x quantity";
+        Style: (
+          FontSize: 12,
+          TextColor: #888888,
+          HorizontalAlignment: Center
+        );
+        Anchor: (Bottom: 10);
+      }
+
+      // Message/Status
+      Label #MessageLabel {
+        Text: "";
+        Style: (
+          FontSize: 14,
+          TextColor: #ffff44,
+          HorizontalAlignment: Center
+        );
+        Anchor: (Bottom: 5);
+      }
+    }
+  }
+}
+
+$C.@BackButton {}

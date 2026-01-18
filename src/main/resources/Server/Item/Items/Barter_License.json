@@ -1,0 +1,18 @@
+{
+  "Parent": "Upgrade_Backpack_2",
+  "MaxStack": 16,
+  "TranslationProperties": {
+    "Name": "Barter License",
+    "Description": "Right-click on a chest to convert it into a shop. The shop allows other players to buy and sell items with you."
+  },
+  "Interactions": {
+    "Primary": {
+      "Interactions": [
+        {
+          "Type": "EquipItem"
+        }
+      ]
+    },
+    "Secondary": "BarterChest_BarterLicense"
+  }
+}

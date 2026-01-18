@@ -1,0 +1,314 @@
+$C = "../Common.ui";
+
+@CustomLabelStyle = LabelStyle(
+  FontSize: 14,
+  TextColor: #bfcdd5,
+  RenderBold: true,
+  HorizontalAlignment: Center,
+  VerticalAlignment: Center
+);
+
+@CustomButtonStyle = TextButtonStyle(
+  Default: (Background: $C.@DefaultSquareButtonDefaultBackground, LabelStyle: @CustomLabelStyle),
+  Hovered: (Background: $C.@DefaultSquareButtonHoveredBackground, LabelStyle: @CustomLabelStyle),
+  Pressed: (Background: $C.@DefaultSquareButtonPressedBackground, LabelStyle: @CustomLabelStyle),
+  Disabled: (Background: $C.@DefaultSquareButtonDisabledBackground, LabelStyle: @CustomLabelStyle),
+  Sounds: $C.@ButtonSounds,
+);
+
+@CurrencyButtonStyle = TextButtonStyle(
+  Default: (Background: (Color: #3a3a5a), LabelStyle: @CustomLabelStyle),
+  Hovered: (Background: (Color: #4a4a7a), LabelStyle: @CustomLabelStyle),
+  Pressed: (Background: (Color: #2a2a4a), LabelStyle: @CustomLabelStyle),
+  Disabled: (Background: (Color: #333333), LabelStyle: @CustomLabelStyle),
+  Sounds: $C.@ButtonSounds,
+);
+
+@SelectedCurrencyStyle = TextButtonStyle(
+  Default: (Background: (Color: #4a7a4a), LabelStyle: @CustomLabelStyle),
+  Hovered: (Background: (Color: #5a9a5a), LabelStyle: @CustomLabelStyle),
+  Pressed: (Background: (Color: #3a6a3a), LabelStyle: @CustomLabelStyle),
+  Disabled: (Background: (Color: #333333), LabelStyle: @CustomLabelStyle),
+  Sounds: $C.@ButtonSounds,
+);
+
+@PriceButtonStyle = TextButtonStyle(
+  Default: (Background: (Color: #444466), LabelStyle: @CustomLabelStyle),
+  Hovered: (Background: (Color: #555588), LabelStyle: @CustomLabelStyle),
+  Pressed: (Background: (Color: #333355), LabelStyle: @CustomLabelStyle),
+  Disabled: (Background: (Color: #333333), LabelStyle: @CustomLabelStyle),
+  Sounds: $C.@ButtonSounds,
+);
+
+@SaveButtonStyle = TextButtonStyle(
+  Default: (Background: (Color: #226622), LabelStyle: @CustomLabelStyle),
+  Hovered: (Background: (Color: #338833), LabelStyle: @CustomLabelStyle),
+  Pressed: (Background: (Color: #114411), LabelStyle: @CustomLabelStyle),
+  Disabled: (Background: (Color: #444444), LabelStyle: @CustomLabelStyle),
+  Sounds: $C.@ButtonSounds,
+);
+
+@DeleteButtonStyle = TextButtonStyle(
+  Default: (Background: (Color: #662222), LabelStyle: @CustomLabelStyle),
+  Hovered: (Background: (Color: #883333), LabelStyle: @CustomLabelStyle),
+  Pressed: (Background: (Color: #441111), LabelStyle: @CustomLabelStyle),
+  Disabled: (Background: (Color: #444444), LabelStyle: @CustomLabelStyle),
+  Sounds: $C.@ButtonSounds,
+);
+
+$C.@PageOverlay {
+
+  $C.@DecoratedContainer {
+    Anchor: (Width: 450, Height: 480);
+
+    #Title {
+      Group {
+        $C.@Title #TitleText {
+          @Text = "Configure Shop";
+        }
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Left: 15, Right: 15, Top: 10, Bottom: 10);
+
+      // Current Item
+      Label #ItemLabel {
+        Text: "Item: Not configured";
+        Style: (
+          FontSize: 16,
+          TextColor: #ffdd44,
+          RenderBold: true,
+          HorizontalAlignment: Center
+        );
+        Anchor: (Bottom: 10);
+      }
+
+      // Currency Section
+      Label {
+        Text: "CURRENCY";
+        Style: (
+          FontSize: 11,
+          TextColor: #93844c,
+          RenderBold: true
+        );
+        Anchor: (Bottom: 5);
+      }
+
+      // Currency buttons row 1
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 5, Height: 32);
+
+        TextButton #Currency0 {
+          Text: "Copper Bar";
+          Style: @CurrencyButtonStyle;
+          Anchor: (Height: 30);
+          Padding: (Left: 8, Right: 8);
+        }
+
+        Label { Anchor: (Width: 5); }
+
+        TextButton #Currency1 {
+          Text: "Iron Bar";
+          Style: @CurrencyButtonStyle;
+          Anchor: (Height: 30);
+          Padding: (Left: 8, Right: 8);
+        }
+
+        Label { Anchor: (Width: 5); }
+
+        TextButton #Currency2 {
+          Text: "Silver Bar";
+          Style: @CurrencyButtonStyle;
+          Anchor: (Height: 30);
+          Padding: (Left: 8, Right: 8);
+        }
+
+        Label { Anchor: (Width: 5); }
+
+        TextButton #Currency3 {
+          Text: "Gold Bar";
+          Style: @CurrencyButtonStyle;
+          Anchor: (Height: 30);
+          Padding: (Left: 8, Right: 8);
+        }
+      }
+
+      // Use item in hand button
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 12, Height: 32);
+
+        TextButton #CurrencyFromHand {
+          Text: "Use Item in Hand";
+          Style: @CurrencyButtonStyle;
+          Anchor: (Height: 30);
+          Padding: (Left: 12, Right: 12);
+        }
+      }
+
+      // Buy Price Section
+      Label {
+        Text: "BUY PRICE (customers pay you)";
+        Style: (
+          FontSize: 11,
+          TextColor: #44ff44,
+          RenderBold: true
+        );
+        Anchor: (Bottom: 5);
+      }
+
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 10, Height: 36);
+
+        TextButton #BuyMinus {
+          Text: "-";
+          Style: @PriceButtonStyle;
+          Anchor: (Width: 40, Height: 34);
+        }
+
+        Label { Anchor: (Width: 5); }
+
+        Label #BuyPriceLabel {
+          Text: "0";
+          Style: (
+            FontSize: 18,
+            TextColor: #44ff44,
+            RenderBold: true,
+            HorizontalAlignment: Center
+          );
+          Anchor: (Width: 80);
+        }
+
+        Label { Anchor: (Width: 5); }
+
+        TextButton #BuyPlus {
+          Text: "+";
+          Style: @PriceButtonStyle;
+          Anchor: (Width: 40, Height: 34);
+        }
+
+        Label { Anchor: (Width: 20); }
+
+        Label {
+          Text: "(0 = not selling)";
+          Style: (
+            FontSize: 11,
+            TextColor: #666666
+          );
+          Anchor: (Top: 8);
+        }
+      }
+
+      // Sell Price Section
+      Label {
+        Text: "SELL PRICE (you pay customers)";
+        Style: (
+          FontSize: 11,
+          TextColor: #ff8844,
+          RenderBold: true
+        );
+        Anchor: (Bottom: 5);
+      }
+
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 12, Height: 36);
+
+        TextButton #SellMinus {
+          Text: "-";
+          Style: @PriceButtonStyle;
+          Anchor: (Width: 40, Height: 34);
+        }
+
+        Label { Anchor: (Width: 5); }
+
+        Label #SellPriceLabel {
+          Text: "0";
+          Style: (
+            FontSize: 18,
+            TextColor: #ff8844,
+            RenderBold: true,
+            HorizontalAlignment: Center
+          );
+          Anchor: (Width: 80);
+        }
+
+        Label { Anchor: (Width: 5); }
+
+        TextButton #SellPlus {
+          Text: "+";
+          Style: @PriceButtonStyle;
+          Anchor: (Width: 40, Height: 34);
+        }
+
+        Label { Anchor: (Width: 20); }
+
+        Label {
+          Text: "(0 = not buying)";
+          Style: (
+            FontSize: 11,
+            TextColor: #666666
+          );
+          Anchor: (Top: 8);
+        }
+      }
+
+      // Hint
+      Label {
+        Text: "Hold SHIFT for +/-10, CTRL for +/-100";
+        Style: (
+          FontSize: 10,
+          TextColor: #666666,
+          HorizontalAlignment: Center
+        );
+        Anchor: (Bottom: 10);
+      }
+
+      // Message/Status
+      Label #MessageLabel {
+        Text: "";
+        Style: (
+          FontSize: 13,
+          TextColor: #ffff44,
+          HorizontalAlignment: Center
+        );
+        Anchor: (Bottom: 10);
+      }
+
+      // Button Section
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 10, Height: 42);
+
+        TextButton #SaveButton {
+          Text: "Save";
+          Style: @SaveButtonStyle;
+          Anchor: (Width: 100, Height: 38);
+        }
+
+        Label { FlexWeight: 1; }
+
+        TextButton #RemoveShopButton {
+          Text: "Remove Shop";
+          Style: @DeleteButtonStyle;
+          Anchor: (Height: 38);
+          Padding: (Left: 12, Right: 12);
+        }
+
+        Label { FlexWeight: 1; }
+
+        $C.@CancelTextButton #CloseButton {
+          Text: "Cancel";
+          Anchor: (Height: 38);
+          Padding: (Left: 15, Right: 15);
+        }
+      }
+    }
+  }
+}
+
+$C.@BackButton {}

@@ -1,0 +1,19 @@
+{
+  "Group": "BarterChest",
+  "Name": "BarterChest",
+  "Version": "1.0.0",
+  "Description": "Player-owned chest shops with barter trading system",
+  "Authors": [
+    {
+      "Name": "Ticrom"
+    }
+  ],
+  "ServerVersion": "*",
+  "Dependencies": {
+    "Hytale:EntityModule": "*"
+  },
+  "OptionalDependencies": {},
+  "DisabledByDefault": false,
+  "Main": "com.example.barterchest.BarterChestPlugin",
+  "IncludesAssetPack": true
+}
