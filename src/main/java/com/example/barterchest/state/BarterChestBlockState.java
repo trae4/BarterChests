@@ -400,6 +400,17 @@ public class BarterChestBlockState extends ItemContainerState implements BreakVa
     }
     
     /**
+     * Override onItemChange to safely handle inventory modifications.
+     * The parent class registers this as an event listener, but we need
+     * to ensure null chunk doesn't cause crashes.
+     */
+    @Override
+    public void onItemChange(ItemContainer.ItemContainerChangeEvent event) {
+        // Just call our safe markNeedsSave
+        markNeedsSave();
+    }
+    
+    /**
      * Update the floating display entity above the shop.
      * Call this after changing the shop's item configuration.
      */
