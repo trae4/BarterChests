@@ -157,4 +157,4 @@ This plugin is provided as-is for use with Hytale servers.
 
 ## Credits
 
-Developed for Hytale server modding.
+Developed for Hytale server modding by Ticrom
