@@ -1,0 +1,27 @@
+{
+  "Input": [
+    {
+      "ItemId": "Ingredient_Fabric_Scrap_Linen",
+      "Quantity": 5
+    },
+    {
+      "ItemId": "Ingredient_Bar_Gold",
+      "Quantity": 1
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Barter_License",
+    "Quantity": 1
+  },
+  "BenchRequirement": [
+    {
+      "Id": "Workbench",
+      "Type": "Crafting",
+      "Categories": [
+        "Workbench_Tinkering"
+      ]
+    }
+  ],
+  "KnowledgeRequired": false,
+  "TimeSeconds": 2
+}

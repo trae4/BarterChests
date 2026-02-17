@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    // Shadow plugin compatible with Gradle 9+
+    id 'com.gradleup.shadow' version '9.0.0'
+}
+
+group = 'net.ticrom'
+version = '1.0.5'
+
+repositories {
+    mavenCentral()
+    // Official Hytale Maven repo (release channel)
+    maven { url 'https://maven.hytale.com/release' }
+    // If you ever want to test pre-release builds, uncomment:
+    // maven { url 'https://maven.hytale.com/pre-release' }
+}
+
+dependencies {
+    // Hytale Server API - compileOnly so it is provided by the server runtime.
+    // Use a dynamic version to always grab the latest published release.
+    // (If you want reproducible builds, pin this to a specific version.)
+    compileOnly 'com.hypixel.hytale:Server:+'
+
+    // BarterChest uses Gson for JSON config/serialization.
+    implementation 'com.google.code.gson:gson:2.11.0'
+}
+
+java {
+    // Build Java 17 bytecode (works even if you're running JDK 21 locally).
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+    options.encoding = 'UTF-8'
+
+    // Disable incremental compilation so Gradle doesn't need stable source snapshots for up-to-date checks.
+    // This reduces issues on cloud-synced folders (OneDrive/Dropbox) where files can be placeholders.
+    options.incremental = false
+
+    // If you build from a cloud-synced folder (OneDrive/Dropbox) and see
+    // "not a regular file" snapshot errors, move the project to a normal
+    // local path (e.g. D:\Projects\...) and re-run `gradle clean build`.
+
+}
+
+// Produce a single distributable jar in build/libs (no classifier)
+shadowJar {
+    archiveClassifier.set('')
+
+    // Avoid signature duplication issues
+    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+
+    // Be conservative on duplicates
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+// Make `gradle build` produce the shaded jar
+build.dependsOn shadowJar

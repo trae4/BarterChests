@@ -1,0 +1,21 @@
+{
+  "Group": "BarterChest",
+  "Name": "BarterChest",
+  "Version": "1.0.6",
+  "Description": "Player-owned chest shops with barter trading system",
+  "Authors": [
+    {
+      "Name": "Ticrom"
+    }
+  ],
+  "ServerVersion": "*",
+  "Dependencies": {
+    "Hytale:EntityModule": "*"
+  },
+  "OptionalDependencies": {
+    "CivicCore:CivicCore Economy": "*"
+  },
+  "DisabledByDefault": false,
+  "Main": "net.hytaletogether.barterchest.BarterChestPlugin",
+  "IncludesAssetPack": true
+}
