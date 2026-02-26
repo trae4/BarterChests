@@ -6,6 +6,7 @@ import net.hytaletogether.barterchest.protection.ProtectedShopIndex;
 import net.hytaletogether.barterchest.system.ShopLocationRegistry;
 import net.hytaletogether.barterchest.system.ShopMetadataRegistry;
 import net.hytaletogether.barterchest.state.BarterChestBlockState;
+import net.hytaletogether.barterchest.system.ShopMetadataRegistry;
 import net.hytaletogether.barterchest.system.ShopOwnershipRegistry;
 import net.hytaletogether.barterchest.state.BarterListing;
 import com.hypixel.hytale.codec.Codec;
@@ -69,9 +70,15 @@ public class BarterConfigPage extends InteractiveCustomUIPage<BarterConfigPage.C
             }
         }
         
-        // Set default currency if not set
+        // Set default currency if not set - try metadata registry first (persisted independently of chunk saves)
         if (selectedCurrencyId == null || selectedCurrencyId.isEmpty()) {
-            selectedCurrencyId = BarterConfig.getInstance().getDefaultCurrency();
+            ShopMetadataRegistry.ShopMetadata meta = ShopMetadataRegistry.getMetadata(
+                world.getName(), shopPosition.getX(), shopPosition.getY(), shopPosition.getZ());
+            if (meta != null && meta.currencyItemId != null && !meta.currencyItemId.isEmpty()) {
+                selectedCurrencyId = meta.currencyItemId;
+            } else {
+                selectedCurrencyId = BarterConfig.getInstance().getDefaultCurrency();
+            }
         }
     }
     

@@ -129,6 +129,15 @@ public final class ShopMetadataRegistry {
         }
     }
 
+    @javax.annotation.Nullable
+    public static ShopMetadata getMetadata(String worldName, int x, int y, int z) {
+        if (worldName == null) return null;
+        String k = key(worldName, x, y, z);
+        synchronized (LOCK) {
+            return byKey.get(k);
+        }
+    }
+
     private static String key(String worldName, int x, int y, int z) {
         return worldName + ":" + x + ":" + y + ":" + z;
     }
